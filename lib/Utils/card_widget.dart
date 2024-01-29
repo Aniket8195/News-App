@@ -22,6 +22,15 @@ Widget showNews(BuildContext context,List<News>newsList){
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  const Text("Time:"),
+                  Text(newsList[index].date.toString().substring(11,19)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Text(newsList[index].body,textAlign:TextAlign.justify,),
             ),
            Padding(

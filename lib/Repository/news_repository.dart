@@ -12,7 +12,7 @@ class NewsRepository {
       Uri.parse(apiUrl),
       headers: {
         'Content-Type': 'application/json',
-        'X-Rapidapi-Key': '2a20ff6001msh38a25e59dbad2b8p1988bdjsn7bd4860d3c8e',
+        'X-Rapidapi-Key': '9532e26c97mshea972d915b9af3fp1b9ea8jsnc4978c8f43ca',
         'X-Rapidapi-Host': 'newsnow.p.rapidapi.com',
         'Host': 'newsnow.p.rapidapi.com',
       },

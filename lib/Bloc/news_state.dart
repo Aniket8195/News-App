@@ -20,3 +20,8 @@ class NewsErrorState extends NewsState {
   @override
   List<Object?> get props => [error];
 }
+
+class NewsRefreshState extends NewsState {
+  @override
+  List<Object?> get props => [];
+}

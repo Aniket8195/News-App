@@ -22,9 +22,32 @@ class _MyHomePageState extends State<MyHomePage> {
       create: (context)=>NewsBloc(RepositoryProvider.of<NewsRepository>(context),)..add(LoadNewsEvent()),
       child: Scaffold(
         appBar:AppBar(
-          title:const  Text("News App"),
+          title: const Text("News App"),
           backgroundColor: Colors.red,
+          actions: [
+            BlocBuilder<NewsBloc,NewsState>(
+                builder:(context,state){
+                  if(state is NewsLoadedState){
+                    return IconButton(
+                      onPressed: (){
+                        BlocProvider.of<NewsBloc>(context).add(RefreshNewsEvent());
+                      },
+                      icon: const Icon(Icons.refresh),
+                    );
+                  }
+                  else{
+                    return const SizedBox.shrink();
+
+                  }
+                }
+
+            )
+          ],
         ),
+        // AppBar(
+        //   title:const  Text("News App"),
+        //   backgroundColor: Colors.red,
+        // ),
         body: BlocBuilder<NewsBloc,NewsState>(
           builder:(context,state){
             if(state is NewsLoadingState){
@@ -39,6 +62,11 @@ class _MyHomePageState extends State<MyHomePage> {
             if(state is NewsErrorState){
               return Center(
                 child: Text(state.error),
+              );
+            }
+            if(state is NewsRefreshState){
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
             return const Center(

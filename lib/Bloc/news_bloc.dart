@@ -20,5 +20,16 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
          }
 
     });
+    on<RefreshNewsEvent>((event, emit) async {
+      emit(NewsRefreshState());
+      await Future.delayed(const Duration(milliseconds: 300));
+      try{
+        final news= await newsRepository.fetchNews();
+        emit(NewsLoadedState(news));
+      }catch(e){
+        emit(NewsErrorState(e.toString()));
+      }
+
+    });
   }
 }
