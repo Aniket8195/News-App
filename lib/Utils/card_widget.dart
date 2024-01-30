@@ -11,6 +11,14 @@ Widget showNews(BuildContext context,List<News>newsList){
               height: MediaQuery.of(context).size.height*0.3,
               width: MediaQuery.of(context).size.width*1,
                child: Image.network(newsList[index].image,fit: BoxFit.cover,
+               loadingBuilder: (BuildContext context, Widget child,ImageChunkEvent? loadingProgress) {
+                 if (loadingProgress == null) return child;
+                 return const Center(
+                   child: CircularProgressIndicator(
+                     color: Colors.blueGrey,
+                   ),
+                 );
+               },
                errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
                  return const  Image(image:AssetImage("assets/images/placeholder.png"),fit: BoxFit.cover,);
                }
@@ -55,7 +63,11 @@ Widget showNews(BuildContext context,List<News>newsList){
                      width: MediaQuery.of(context).size.width* 1,
                      decoration: const BoxDecoration(
                        color: Colors.blueGrey,
+                       gradient: LinearGradient(
+                           colors: [Colors.grey,Colors.blueGrey],
+                       )
                      ),
+
                      child: const Padding(
                        padding: EdgeInsets.all(8.0),
                        child: Text(

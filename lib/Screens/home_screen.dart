@@ -4,6 +4,7 @@ import 'package:news/Repository/news_repository.dart';
 import '../Bloc/news_bloc.dart';
 import '../Models/news.dart';
 import '../Utils/card_widget.dart';
+import '../Utils/shimmer.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -51,9 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
         body: BlocBuilder<NewsBloc,NewsState>(
           builder:(context,state){
             if(state is NewsLoadingState){
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              // return const Center(
+              //   child: CircularProgressIndicator(),
+              // );
+              return showShimmer(context);
             }
             if(state is NewsLoadedState){
               List<News>newsList=state.news;
